@@ -33,7 +33,7 @@ developed on macOS and is designed to transfer directly to an NVIDIA Jetson.
 
 4. **Pruning** — structured L1 channel pruning via `torch-pruning`:
    - Sparsity ratios: 0 %, 30 %, 50 %
-   - Fine-tuning after pruning to recover accuracy
+   - No fine-tuning — observes the raw effect on speed and parameter count
 
 5. **Energy mode** (Jetson only):
    - Compare benchmark results across Jetson power modes
@@ -88,13 +88,18 @@ pip install -r requirements.txt
 
 ### 2. Download the MOT17 dataset
 
-1. Go to https://motchallenge.net/data/MOT17/ and download `MOT17.zip`
-2. Extract it so the directory layout matches:
-   ```
-   data/MOT17/train/MOT17-02-DPM/img1/000001.jpg
-   data/MOT17/train/MOT17-04-DPM/img1/000001.jpg
-   …
-   ```
+```bash
+wget https://motchallenge.net/data/MOT17Det.zip
+unzip MOT17Det.zip -d data/
+mv data/MOT17Det data/MOT17
+```
+
+The resulting layout should match:
+```
+data/MOT17/train/MOT17-02-DPM/img1/000001.jpg
+data/MOT17/train/MOT17-04-DPM/img1/000001.jpg
+…
+```
 
 ### 3. (Optional) Create a flat images folder for ultralytics val
 
@@ -139,7 +144,7 @@ python benchmark_quantized.py --data data/MOT17/train --limit 200 --device 0
 ### Pruning
 
 ```bash
-python pruning.py --data data/MOT17/train --finetune-epochs 10 --limit 200 --device cpu
+python pruning.py --data data/MOT17/train --limit 200 --device cpu
 # Output: results/pruning.csv
 ```
 
