@@ -1,0 +1,6 @@
+ultralytics>=8.3.0
+torch-pruning>=1.4.0
+onnxruntime>=1.18.0
+pandas>=2.0.0
+matplotlib>=3.8.0
+tqdm>=4.66.0

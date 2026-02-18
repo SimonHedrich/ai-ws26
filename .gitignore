@@ -1,0 +1,9 @@
+data/
+results/
+*.pt
+*.onnx
+*.engine
+__pycache__/
+*.pyc
+.DS_Store
+runs/

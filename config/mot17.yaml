@@ -1,0 +1,15 @@
+# MOT17 dataset configuration for Ultralytics
+# Download: https://motchallenge.net/data/MOT17/
+# Place extracted dataset at data/MOT17/ relative to project root.
+#
+# MOT17 contains only pedestrians, so we define a single class.
+
+path: data/MOT17          # root dataset directory (relative to project root)
+train: train              # ultralytics will recurse into MOT17-*/img1/
+val: train                # NOTE: MOT17 labels are NOT in YOLO format, so
+                          # this YAML is valid for inference/TRT calibration
+                          # only — use coco8.yaml for actual training/fine-tune
+
+nc: 1
+names:
+  0: person
